@@ -130,7 +130,7 @@ public class DefaultItemBehaviorService extends AbstractService implements IItem
     @Override
     public List<BehaviorDetails> pageBehave(String trafficPool, String item, String behave, int limit, long offset) throws CircuitException {
         ICube cube = cubePool(trafficPool);
-        String cjql = String.format("select {'tuple':'*'}.limit(%s).skip(%s) from tuple %s %s where {'tuple.item':'%s','tuple.behave':'%s'}",
+        String cjql = String.format("select {'tuple':'*'}.limit(%s).skip(%s).sort({'tuple.ctime':-1}) from tuple %s %s where {'tuple.item':'%s','tuple.behave':'%s'}",
                 limit, offset,
                 BehaviorDetails._COL_NAME, BehaviorDetails.class.getName(), item, behave);
         IQuery<BehaviorDetails> query = cube.createQuery(cjql);
