@@ -127,6 +127,19 @@ public class DefaultTrafficPoolService extends AbstractService implements ITraff
     }
 
     @Override
+    public List<TrafficPool> pageChildrenPoolByLevel(String pool, int level, int limit, long offset) {
+        String cjql = String.format("select {'tuple':'*'}.limit(%s).skip(%s) from tuple %s %s where {'tuple.parent':'%s','tuple.level':%s}",
+                limit, offset, TrafficPool._COL_NAME, TrafficPool.class.getName(), pool, level);
+        IQuery<TrafficPool> query = home.createQuery(cjql);
+        List<IDocument<TrafficPool>> documents = query.getResultList();
+        List<TrafficPool> pools = new ArrayList<>();
+        for (IDocument<TrafficPool> document : documents) {
+            pools.add(document.tuple());
+        }
+        return pools;
+    }
+
+    @Override
     public long countContentProvidersOfPool(String pool) throws CircuitException {
         return cubePool(pool).tupleCount(Constants._COL_NAME_PROVIDER, String.format("{}"));
     }

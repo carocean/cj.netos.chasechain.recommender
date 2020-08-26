@@ -23,4 +23,6 @@ public interface ITrafficPoolService {
 
     TrafficDashboardPointer getTrafficDashboard(String pool) throws CircuitException;
 
+    List<TrafficPool> pageChildrenPoolByLevel(String pool, int level, int limit, long offset);
+
 }

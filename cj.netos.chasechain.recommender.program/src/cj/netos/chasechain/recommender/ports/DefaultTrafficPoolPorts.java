@@ -32,6 +32,21 @@ public class DefaultTrafficPoolPorts implements ITrafficPoolPorts {
     }
 
     @Override
+    public List<TrafficPool> pageChildrenPoolByLevel(ISecuritySession securitySession, String pool, int level, int limit, long offset) throws CircuitException {
+        return trafficPoolService.pageChildrenPoolByLevel(pool, level, limit, offset);
+    }
+
+    @Override
+    public TrafficPool getTownTrafficPool(ISecuritySession securitySession, String towncode) throws CircuitException {
+        return trafficPoolService.getTownTrafficPool(towncode);
+    }
+
+    @Override
+    public List<TrafficPool> getHierarchyGeospherePools(ISecuritySession securitySession, String towncode) throws CircuitException {
+        return trafficPoolService.getHierarchyGeospherePools(towncode);
+    }
+
+    @Override
     public long countContentProvidersOfPool(ISecuritySession securitySession, String pool) throws CircuitException {
         return trafficPoolService.countContentProvidersOfPool(pool);
     }

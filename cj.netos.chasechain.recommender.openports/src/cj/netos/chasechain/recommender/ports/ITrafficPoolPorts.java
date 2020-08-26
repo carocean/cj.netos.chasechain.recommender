@@ -23,6 +23,21 @@ public interface ITrafficPoolPorts extends IOpenportService {
                                        @CjOpenportParameter(usage = "页码", name = "offset") long offset
     ) throws CircuitException;
 
+    @CjOpenport(usage = "获取下级级流量池")
+    List<TrafficPool> pageChildrenPoolByLevel(ISecuritySession securitySession,
+                                              @CjOpenportParameter(usage = "流量池标识", name = "pool") String pool,
+                                              @CjOpenportParameter(usage = "0全国；1省级；2市级；3区县级；4乡镇；-1 常规即非地理流量池;", name = "level") int level,
+                                              @CjOpenportParameter(usage = "分页大小", name = "limit") int limit,
+                                              @CjOpenportParameter(usage = "页码", name = "offset") long offset
+    ) throws CircuitException;
+
+    @CjOpenport(usage = "获取乡镇街道级别的流量池")
+    TrafficPool getTownTrafficPool(ISecuritySession securitySession,
+                                   @CjOpenportParameter(usage = "乡镇代码", name = "towncode") String towncode) throws CircuitException;
+
+    List<TrafficPool> getHierarchyGeospherePools(ISecuritySession securitySession,
+                                                 @CjOpenportParameter(usage = "乡镇代码", name = "towncode") String towncode) throws CircuitException;
+
     @CjOpenport(usage = "获取流量池中的内容提供者人数")
     long countContentProvidersOfPool(ISecuritySession securitySession,
                                      @CjOpenportParameter(usage = "流量池标识", name = "pool") String pool
