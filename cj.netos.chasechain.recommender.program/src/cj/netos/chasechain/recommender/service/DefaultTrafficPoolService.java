@@ -115,7 +115,7 @@ public class DefaultTrafficPoolService extends AbstractService implements ITraff
 
     @Override
     public List<TrafficPool> pageChildrenPool(String pool, int limit, long offset) {
-        String cjql = String.format("select {'tuple':'*'}.limit(%s).skip(%s) from tuple %s %s where {'tuple.parent':'%s'}",
+        String cjql = String.format("select {'tuple':'*'}.sort({'tuple.title':1}).limit(%s).skip(%s) from tuple %s %s where {'tuple.parent':'%s'}",
                 limit, offset, TrafficPool._COL_NAME, TrafficPool.class.getName(), pool);
         IQuery<TrafficPool> query = home.createQuery(cjql);
         List<IDocument<TrafficPool>> documents = query.getResultList();
@@ -128,7 +128,7 @@ public class DefaultTrafficPoolService extends AbstractService implements ITraff
 
     @Override
     public List<TrafficPool> pageChildrenPoolByLevel(String pool, int level, int limit, long offset) {
-        String cjql = String.format("select {'tuple':'*'}.limit(%s).skip(%s) from tuple %s %s where {'tuple.parent':'%s','tuple.level':%s}",
+        String cjql = String.format("select {'tuple':'*'}.sort({'tuple.title':1}).limit(%s).skip(%s) from tuple %s %s where {'tuple.parent':'%s','tuple.level':%s}",
                 limit, offset, TrafficPool._COL_NAME, TrafficPool.class.getName(), pool, level);
         IQuery<TrafficPool> query = home.createQuery(cjql);
         List<IDocument<TrafficPool>> documents = query.getResultList();
