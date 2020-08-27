@@ -18,7 +18,8 @@ public class AbstractService {
             CubeConfig cubeConfig = new CubeConfig();
             cubeConfig.alias(col);
             ICube cube = disk.createCube(col, cubeConfig);
-            cube.createIndex(_COL_NAME_dashboard, Document.parse(String.format("{'tuple.lastCacheTime':-1}")));
+            cube.createIndex(_COL_NAME_dashboard, Document.parse(String.format("{'tuple.itemLastCacheTime':-1}")));
+            cube.createIndex(_COL_NAME_dashboard, Document.parse(String.format("{'tuple.behaviorLastCacheTime':-1}")));
             return cube;
         }
         return disk.cube(col);
