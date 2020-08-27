@@ -71,7 +71,7 @@ public class DefaultRecommenderPorts implements IRecommenderPorts {
                 .add(districtRecommendWeight)
                 .add(townRecommendWeight)
                 .add(normalRecommendWeight);
-        BigDecimal weightCapacity = total.divide(new BigDecimal(maxRecommendItemCount), 4, RoundingMode.HALF_DOWN);
+        BigDecimal weightCapacity = new BigDecimal(maxRecommendItemCount).divide(total, 4, RoundingMode.HALF_DOWN);
         config.setWeightCapacity(weightCapacity);
         CJSystem.logging().info(getClass(), String.format("每权容量:weightCapacity=%s", weightCapacity));
         recommenderService.configGlobal(config);
@@ -129,7 +129,7 @@ public class DefaultRecommenderPorts implements IRecommenderPorts {
                 .add(districtRecommendWeight)
                 .add(townRecommendWeight)
                 .add(normalRecommendWeight);
-        BigDecimal weightCapacity = total.divide(new BigDecimal(maxRecommendItemCount), 4, RoundingMode.HALF_DOWN);
+        BigDecimal weightCapacity = new BigDecimal(maxRecommendItemCount).divide(total, 4, RoundingMode.HALF_DOWN);
         config.setWeightCapacity(weightCapacity);
         recommenderService.configPerson(securitySession.principal(), config);
     }

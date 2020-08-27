@@ -49,7 +49,8 @@ public class DefaultRecommenderService extends AbstractService implements IRecom
             config.setDistrictRecommendWeight(new BigDecimal("1.00"));
             config.setTownRecommendWeight(new BigDecimal("1.00"));
             config.setNormalRecommendWeight(new BigDecimal("1.00"));
-            BigDecimal weightCapacity = new BigDecimal(config.getMaxRecommendItemCount()).divide(new BigDecimal("6.00"), 4, RoundingMode.HALF_DOWN);
+            BigDecimal weightCapacity = new BigDecimal(config.getMaxRecommendItemCount()).
+                    divide(new BigDecimal("6.00")/*由于初始化时上面的权之和为6*/, 4, RoundingMode.HALF_DOWN);
             config.setWeightCapacity(weightCapacity);
         }
         String redisKeyPerson = String.format("recommender.person.%s", person);
