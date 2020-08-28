@@ -35,6 +35,9 @@ public class DefaultRecommenderPorts implements IRecommenderPorts {
         if (maxRecommendItemCount < 10) {
             throw new CircuitException("500", "maxRecommendItemCount<10");
         }
+        if (maxRecommendItemCount >60) {
+            throw new CircuitException("500", "maxRecommendItemCount>60");
+        }
         if (countryRecommendWeight == null || countryRecommendWeight.compareTo(new BigDecimal("0.0")) < -1) {
             throw new CircuitException("500", "countryRecommendWeight参数为空或小于1");
         }
@@ -92,6 +95,9 @@ public class DefaultRecommenderPorts implements IRecommenderPorts {
     public void configPersonRecommender(ISecuritySession securitySession, int maxRecommendItemCount, BigDecimal countryRecommendWeight, BigDecimal normalRecommendWeight, BigDecimal provinceRecommendWeight, BigDecimal cityRecommendWeight, BigDecimal districtRecommendWeight, BigDecimal townRecommendWeight) throws CircuitException {
         if (maxRecommendItemCount < 10) {
             throw new CircuitException("500", "maxRecommendItemCount<10");
+        }
+        if (maxRecommendItemCount >60) {
+            throw new CircuitException("500", "maxRecommendItemCount>60");
         }
         if (countryRecommendWeight == null || countryRecommendWeight.compareTo(new BigDecimal("0.0")) < -1) {
             throw new CircuitException("500", "countryRecommendWeight参数为空或小于1");

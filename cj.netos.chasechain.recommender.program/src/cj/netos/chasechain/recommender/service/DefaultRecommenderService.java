@@ -42,7 +42,7 @@ public class DefaultRecommenderService extends AbstractService implements IRecom
         RecommenderConfig config = getPersonConfig(person);
         if (config == null) {//默认的
             config = new RecommenderConfig();
-            config.setMaxRecommendItemCount(50);
+            config.setMaxRecommendItemCount(10);
             config.setCountryRecommendWeight(new BigDecimal("1.00"));
             config.setProvinceRecommendWeight(new BigDecimal("1.00"));
             config.setCityRecommendWeight(new BigDecimal("1.00"));
@@ -58,7 +58,7 @@ public class DefaultRecommenderService extends AbstractService implements IRecom
         List<TrafficPool> pools = trafficPoolService.getRecommendPools(towncode);
         BigDecimal weightCapacity = config.getWeightCapacity();
         for (TrafficPool pool : pools) {
-            int canFullItemCount = 20;
+            int canFullItemCount = config.getMaxRecommendItemCount();
             switch (pool.getLevel()) {
                 case -1:
                     canFullItemCount = (weightCapacity.multiply(config.getNormalRecommendWeight())).intValue();
