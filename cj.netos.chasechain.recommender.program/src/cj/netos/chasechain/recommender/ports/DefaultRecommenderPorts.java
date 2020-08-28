@@ -11,6 +11,7 @@ import cj.studio.openport.ISecuritySession;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Collections;
 import java.util.List;
 
 @CjService(name = "/recommender.ports")
@@ -136,6 +137,8 @@ public class DefaultRecommenderPorts implements IRecommenderPorts {
 
     @Override
     public List<ContentItem> pullItem(ISecuritySession securitySession, String towncode) throws CircuitException {
-        return recommenderService.pullItem(securitySession.principal(), towncode);
+        List<ContentItem> list= recommenderService.pullItem(securitySession.principal(), towncode);
+        Collections.shuffle(list);//重新冼牌。以避免类似于按池分组的顺序
+        return list;
     }
 }
