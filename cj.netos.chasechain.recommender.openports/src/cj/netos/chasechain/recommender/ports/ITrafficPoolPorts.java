@@ -35,6 +35,7 @@ public interface ITrafficPoolPorts extends IOpenportService {
     TrafficPool getTownTrafficPool(ISecuritySession securitySession,
                                    @CjOpenportParameter(usage = "乡镇代码", name = "towncode") String towncode) throws CircuitException;
 
+    @CjOpenport(usage = "获取层级流量池")
     List<TrafficPool> getHierarchyGeospherePools(ISecuritySession securitySession,
                                                  @CjOpenportParameter(usage = "乡镇代码", name = "towncode") String towncode) throws CircuitException;
 
@@ -59,6 +60,15 @@ public interface ITrafficPoolPorts extends IOpenportService {
                                     @CjOpenportParameter(usage = "流量池标识", name = "pool") String pool,
                                     @CjOpenportParameter(usage = "分页大小", name = "limit") int limit,
                                     @CjOpenportParameter(usage = "页码", name = "offset") long offset
+    ) throws CircuitException;
+
+
+    @CjOpenport(usage = "分页获取指定流量池中的内容盒")
+    List<ContentBox> pageContentBoxOfProvider(ISecuritySession securitySession,
+                                              @CjOpenportParameter(usage = "流量池标识", name = "pool") String pool,
+                                              @CjOpenportParameter(usage = "内容提共商", name = "provider") String provider,
+                                              @CjOpenportParameter(usage = "分页大小", name = "limit") int limit,
+                                              @CjOpenportParameter(usage = "页码", name = "offset") long offset
     ) throws CircuitException;
 
     @CjOpenport(usage = "获取流量池中的内容盒的内容物数")

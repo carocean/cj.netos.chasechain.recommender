@@ -9,4 +9,6 @@ public interface IContentBoxService {
 
     List<ContentBox> pageContentBox(String pool, int limit, long offset) throws CircuitException;
 
+    List<ContentBox> pageContentBoxOfProvider(String pool, String provider, int limit, long offset) throws CircuitException;
+
 }

@@ -67,6 +67,12 @@ public class DefaultTrafficPoolPorts implements ITrafficPoolPorts {
     }
 
     @Override
+    public List<ContentBox> pageContentBoxOfProvider(ISecuritySession securitySession, String pool, String provider, int limit, long offset) throws CircuitException {
+        return contentBoxService.pageContentBoxOfProvider(pool, provider, limit, offset);
+    }
+
+
+    @Override
     public long countContentItemsOfBox(ISecuritySession securitySession, String pool, String box) throws CircuitException {
         return contentItemService.countContentItemsOfBox(pool, box);
     }
