@@ -171,15 +171,47 @@ public class DefaultTrafficPoolService extends AbstractService implements ITraff
             inner.setComments(new BigInteger("0"));
             inner.setLikes(new BigInteger("0"));
             inner.setRecommends(new BigInteger("0"));
+            inner.setHasLikeItemCount(new BigInteger("0"));
+            inner.setHasCommentItemCount(new BigInteger("0"));
+            inner.setHasRecommendItemCount(new BigInteger("0"));
+
             ItemBehaviorPointer innate = new ItemBehaviorPointer();
             innate.setComments(new BigInteger("0"));
             innate.setLikes(new BigInteger("0"));
+            innate.setRecommends(new BigInteger("0"));
+            innate.setHasLikeItemCount(new BigInteger("0"));
+            innate.setHasCommentItemCount(new BigInteger("0"));
+            innate.setHasRecommendItemCount(new BigInteger("0"));
+
             pointer.setInnerBehaviorPointer(inner);
             pointer.setInnateBehaviorPointer(innate);
             pointer.setLastBubbleTime(0L);
             return pointer;
         }
-        return document.tuple();
+        TrafficDashboardPointer pointer = document.tuple();
+
+        ItemBehaviorPointer innate = pointer.getInnateBehaviorPointer();
+        if (innate.getHasLikeItemCount() == null) {
+            innate.setHasLikeItemCount(new BigInteger("0"));
+        }
+        if (innate.getHasCommentItemCount() == null) {
+            innate.setHasCommentItemCount(new BigInteger("0"));
+        }
+        if (innate.getHasRecommendItemCount() == null) {
+            innate.setHasRecommendItemCount(new BigInteger("0"));
+        }
+
+        ItemBehaviorPointer inner = pointer.getInnerBehaviorPointer();
+        if (inner.getHasLikeItemCount() == null) {
+            inner.setHasLikeItemCount(new BigInteger("0"));
+        }
+        if (inner.getHasCommentItemCount() == null) {
+            inner.setHasCommentItemCount(new BigInteger("0"));
+        }
+        if (inner.getHasRecommendItemCount() == null) {
+            inner.setHasRecommendItemCount(new BigInteger("0"));
+        }
+        return pointer;
 
     }
 }
