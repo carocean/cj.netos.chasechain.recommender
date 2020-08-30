@@ -35,8 +35,8 @@ public class DefaultRecommenderPorts implements IRecommenderPorts {
         if (maxRecommendItemCount < 10) {
             throw new CircuitException("500", "maxRecommendItemCount<10");
         }
-        if (maxRecommendItemCount >60) {
-            throw new CircuitException("500", "maxRecommendItemCount>60");
+        if (maxRecommendItemCount >30) {
+            throw new CircuitException("500", "maxRecommendItemCount>30");
         }
         if (countryRecommendWeight == null || countryRecommendWeight.compareTo(new BigDecimal("0.0")) < -1) {
             throw new CircuitException("500", "countryRecommendWeight参数为空或小于1");
@@ -96,8 +96,8 @@ public class DefaultRecommenderPorts implements IRecommenderPorts {
         if (maxRecommendItemCount < 10) {
             throw new CircuitException("500", "maxRecommendItemCount<10");
         }
-        if (maxRecommendItemCount >60) {
-            throw new CircuitException("500", "maxRecommendItemCount>60");
+        if (maxRecommendItemCount >30) {
+            throw new CircuitException("500", "maxRecommendItemCount>30");
         }
         if (countryRecommendWeight == null || countryRecommendWeight.compareTo(new BigDecimal("0.0")) < -1) {
             throw new CircuitException("500", "countryRecommendWeight参数为空或小于1");
