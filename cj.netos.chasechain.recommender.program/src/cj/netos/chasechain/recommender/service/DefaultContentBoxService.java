@@ -5,6 +5,7 @@ import cj.lns.chip.sos.cube.framework.IDocument;
 import cj.lns.chip.sos.cube.framework.IQuery;
 import cj.netos.chasechain.recommender.AbstractService;
 import cj.netos.chasechain.recommender.ContentBox;
+import cj.netos.chasechain.recommender.ContentBoxAssigner;
 import cj.netos.chasechain.recommender.IContentBoxService;
 import cj.studio.ecm.annotation.CjService;
 import cj.studio.ecm.net.CircuitException;
@@ -53,6 +54,20 @@ public class DefaultContentBoxService extends AbstractService implements IConten
         List<ContentBox> boxes = new ArrayList<>();
         for (IDocument<ContentBox> boxIDocument : documents) {
             boxIDocument.tuple().setPool(pool);
+            boxes.add(boxIDocument.tuple());
+        }
+        return boxes;
+    }
+
+    @Override
+    public List<ContentBox> pageContentBoxByAssigner(String provider, int limit, long offset) throws CircuitException {
+        ICube cube = home();
+        String cjql = String.format("select {'tuple':'*'}.limit(%s).skip(%s) from tuple %s %s where {'tuple.pointer.creator':'%s'}",
+                limit, offset, ContentBoxAssigner._COL_NAME, ContentBox.class.getName(), provider);
+        IQuery<ContentBox> query = cube.createQuery(cjql);
+        List<IDocument<ContentBox>> documents = query.getResultList();
+        List<ContentBox> boxes = new ArrayList<>();
+        for (IDocument<ContentBox> boxIDocument : documents) {
             boxes.add(boxIDocument.tuple());
         }
         return boxes;
