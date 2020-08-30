@@ -72,7 +72,7 @@ public interface ITrafficPoolPorts extends IOpenportService {
     ) throws CircuitException;
 
     @CjOpenport(usage = "分页获取内容提供商的内容盒")
-    List<ContentBox> pageContentBoxByAssigner(ISecuritySession securitySession,
+    List<ContentBoxAssigner> pageContentBoxByAssigner(ISecuritySession securitySession,
                                               @CjOpenportParameter(usage = "内容提共商", name = "provider") String provider,
                                               @CjOpenportParameter(usage = "分页大小", name = "limit") int limit,
                                               @CjOpenportParameter(usage = "页码", name = "offset") long offset

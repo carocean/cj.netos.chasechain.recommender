@@ -72,7 +72,7 @@ public class DefaultTrafficPoolPorts implements ITrafficPoolPorts {
     }
 
     @Override
-    public List<ContentBox> pageContentBoxByAssigner(ISecuritySession securitySession, String provider, int limit, long offset) throws CircuitException {
+    public List<ContentBoxAssigner> pageContentBoxByAssigner(ISecuritySession securitySession, String provider, int limit, long offset) throws CircuitException {
         return contentBoxService.pageContentBoxByAssigner(provider, limit, offset);
     }
 

@@ -60,14 +60,14 @@ public class DefaultContentBoxService extends AbstractService implements IConten
     }
 
     @Override
-    public List<ContentBox> pageContentBoxByAssigner(String provider, int limit, long offset) throws CircuitException {
+    public List<ContentBoxAssigner> pageContentBoxByAssigner(String provider, int limit, long offset) throws CircuitException {
         ICube cube = home();
         String cjql = String.format("select {'tuple':'*'}.limit(%s).skip(%s) from tuple %s %s where {'tuple.pointer.creator':'%s'}",
-                limit, offset, ContentBoxAssigner._COL_NAME, ContentBox.class.getName(), provider);
-        IQuery<ContentBox> query = cube.createQuery(cjql);
-        List<IDocument<ContentBox>> documents = query.getResultList();
-        List<ContentBox> boxes = new ArrayList<>();
-        for (IDocument<ContentBox> boxIDocument : documents) {
+                limit, offset, ContentBoxAssigner._COL_NAME, ContentBoxAssigner.class.getName(), provider);
+        IQuery<ContentBoxAssigner> query = cube.createQuery(cjql);
+        List<IDocument<ContentBoxAssigner>> documents = query.getResultList();
+        List<ContentBoxAssigner> boxes = new ArrayList<>();
+        for (IDocument<ContentBoxAssigner> boxIDocument : documents) {
             boxes.add(boxIDocument.tuple());
         }
         return boxes;
