@@ -5,6 +5,7 @@ public class BoxPointer {
     String title;
     String type;
     String creator;
+    String leading;
     long ctime;
 
     public String getId() {
@@ -13,6 +14,14 @@ public class BoxPointer {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getLeading() {
+        return leading;
+    }
+
+    public void setLeading(String leading) {
+        this.leading = leading;
     }
 
     public String getTitle() {
